@@ -14,8 +14,8 @@ UBTT_FindRandomLocation::UBTT_FindRandomLocation(FObjectInitializer const& objec
 }
 EBTNodeResult::Type UBTT_FindRandomLocation::ExecuteTask(UBehaviorTreeComponent& owner_comp, uint8* node_memory)
 {
-	auto const cont = Cast<AMyBossAIController>(owner_comp.GetAIOwner());
-	auto const npc = cont->GetPawn();
+	AMyBossAIController* cont = Cast<AMyBossAIController>(owner_comp.GetAIOwner());
+	APawn* npc = cont->GetPawn();
 
 	FVector const origin = npc->GetActorLocation();
 	FNavLocation loc;
@@ -26,6 +26,7 @@ EBTNodeResult::Type UBTT_FindRandomLocation::ExecuteTask(UBehaviorTreeComponent&
 		cont->get_blackboard()->SetValueAsVector(bb_keys::PatrolLocation, loc.Location);
 	}
 
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, npc->GetName() + ": " + loc.Location.ToString());
 	FinishLatentTask(owner_comp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;
 }
