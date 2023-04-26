@@ -59,7 +59,7 @@ UBlackboardComponent* AMyBossAIController::get_blackboard() const
 
 void AMyBossAIController::onUpdated(TArray<AActor*> const& updated_actors)
 {
-
+	
 }
 
 void AMyBossAIController::setupPerceptionSystem()

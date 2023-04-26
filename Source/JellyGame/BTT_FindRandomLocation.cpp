@@ -26,7 +26,7 @@ EBTNodeResult::Type UBTT_FindRandomLocation::ExecuteTask(UBehaviorTreeComponent&
 		cont->get_blackboard()->SetValueAsVector(bb_keys::PatrolLocation, loc.Location);
 	}
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, npc->GetName() + ": " + loc.Location.ToString());
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, npc->GetName() + ": " + loc.Location.ToString());
 	FinishLatentTask(owner_comp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;
 }
