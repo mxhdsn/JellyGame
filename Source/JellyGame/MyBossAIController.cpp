@@ -27,12 +27,14 @@ AMyBossAIController::AMyBossAIController(FObjectInitializer const& object_initia
 	blackboard = object_initializer.CreateDefaultSubobject<UBlackboardComponent>(this, TEXT("BlackboardComp"));
 	setupPerceptionSystem();
 }
+
 void AMyBossAIController::BeginPlay()
 {
 	Super::BeginPlay();
 	RunBehaviorTree(behaviortree);
 	behaviorTreeComp->StartTree(*behaviortree);
 }
+
 void AMyBossAIController::OnPossess(APawn* const pawn)
 {
 	Super::OnPossess(pawn);
@@ -41,6 +43,7 @@ void AMyBossAIController::OnPossess(APawn* const pawn)
 		blackboard->InitializeBlackboard(*behaviortree->BlackboardAsset);
 	}
 }
+
 void AMyBossAIController::onTargetDetected(AActor* actor, FAIStimulus const stimulus)
 {
 	if (auto const ch = Cast<AJellyGameCharacter>(actor))
@@ -48,14 +51,17 @@ void AMyBossAIController::onTargetDetected(AActor* actor, FAIStimulus const stim
 		get_blackboard()->SetValueAsBool(bb_keys::HasLineOfSight, stimulus.WasSuccessfullySensed());
 	}
 }
+
 UBlackboardComponent* AMyBossAIController::get_blackboard() const
 {
 	return blackboard;
 }
+
 void AMyBossAIController::onUpdated(TArray<AActor*> const& updated_actors)
 {
 
 }
+
 void AMyBossAIController::setupPerceptionSystem()
 {
 	// sight config object
