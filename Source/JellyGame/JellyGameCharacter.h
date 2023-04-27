@@ -49,7 +49,7 @@ public:
 	bool IsGunEquipped;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Statistics")
-	int Health = 10;
+	float Health = 10.00;
 
 protected:
 	
