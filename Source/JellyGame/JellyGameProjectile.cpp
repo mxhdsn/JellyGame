@@ -29,16 +29,24 @@ AJellyGameProjectile::AJellyGameProjectile()
 	ProjectileMovement->ProjectileGravityScale = 0;
 
 	// Die after 3 seconds by default
-	InitialLifeSpan = 3.0f;
+	InitialLifeSpan = 1.0f;
 }
 
 void AJellyGameProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	Destroy(); 
-
+	if (OtherActor->GetName().Contains("Enemy"))
+	{
+		//deal damage
+		Destroy();
+	}
+	Destroy();
 	// Only add impulse and destroy projectile if we hit a physics
 	//if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	//{
 		//Destroy();
 	//}
+}
+
+void AJellyGameProjectile::OnActorEndOverlap() {
+	Destroy();
 }
